@@ -1,4 +1,4 @@
 language: r
 install:
-  - cd pck
+  - cd pkg
 
