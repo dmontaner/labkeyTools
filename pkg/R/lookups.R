@@ -31,7 +31,7 @@
 ##' mapDisplay; the column with the label to be displayed.
 ##'
 ##' @examples
-##' ## myDFlist <- list (warpbreaks = warpbreaks, women = women)
+##' myDFlist <- list (warpbreaks = warpbreaks, women = women)
 ##' res  <- lookupInit (myDFlist)
 ##' res2 <- lookupInit (myDFlist, mapSchema = "study")
 ##' res
