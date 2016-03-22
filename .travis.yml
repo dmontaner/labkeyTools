@@ -1,4 +1,4 @@
 language: r
-install:
+before_install:
   - cd pkg
 
