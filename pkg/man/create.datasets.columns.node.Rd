@@ -8,22 +8,21 @@ create.datasets.columns.node(df, lookup = NULL, subjectColumnName,
   auto.key.name = "lktKey")
 }
 \arguments{
-\item{df}{a data.frame; an element from datasets}
+\item{df}{A data.frame. An element from the `datasets` list.}
 
-\item{lookup}{lookup data.frame. See *lookupInit*}
+\item{lookup}{Lookup data.frame. See `lookupInit`.}
 
-\item{subjectColumnName}{ParticipantId column name.}
+\item{subjectColumnName}{The column to be used as primary participant identifier. Usually "ParticipantId".}
 
-\item{auto.key.name}{name for the automatic key column if this needs to be created.}
+\item{auto.key.name}{name for an automatic key column if this needs to be created.}
 }
 \description{
-To be used form within create.datasets.metadata.xml.
+To be used form within `create.datasets.metadata.xml`.
 }
 \details{
-If subjectColumnName (ParticipantId) is __not unique__ (ie. not a Key)
+If subjectColumnName (ParticipantId) is NOT UNIQUE (ie. not a primary key)
 a new "virtual" column is created to be the key in the table.
-
-"Virtual" means it is not in the csv files but is declared in the
-datasets_metadata.xml file and is created in LabKey when data are imported.
+Here "virtual" means it is not in the csv files but is declared in the
+datasets_metadata.xml file and is created by LabKey when data are imported.
 }
 

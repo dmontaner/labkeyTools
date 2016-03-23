@@ -3,13 +3,26 @@
 
 ##' Create .dataset file for LabKey datasets
 ##'
-##' @import XML
+##' Creates an empty file which needs to exist in the study folder structures.
+##'
+##' The file should be named as the "label" of the study or study folder
+##' and have the extension `.dataset`.
+##' It can be empty or have just comment lines.
+##'
+## @usage create.datasets.dataset.file (name, path)
+##' 
+##' @param name The name or "label" of the study.
+##' See the `folderLabel` parameter in the `saveStudy` function. 
+##' @param outfile Name of the output file.
+##' @param path Path to the directory where the file should be saved.
+##' If missing current working directory is used.
+##' 
 ##' @export
 
 create.datasets.dataset.file <- function (name,
                                           outfile = paste0 (name, ".dataset"),
                                           path) {
-    ## has to be in
+    ## has to be allocated in:
     ## file.path (path, "study", "datasets", outfile)
     
     ## SAVE
@@ -22,15 +35,22 @@ create.datasets.dataset.file <- function (name,
 
 ##' Create manifest.xml file for LabKey datasets
 ##'
-##' This file types seem equivalent: 
-##' - settings.xml files for _LabKey lists_
-##' - datasets_manifest.xml files for _LabKey datasets_
+##' Creates a `manifest.xml` file describing the tables or "datasets" in a
+##' LabKey study.
+##' 
+##' This file types seem equivalent (but not completely equal) to:
 ##'
-##' @param datasets a list of data.frames to be uploaded as _LabKey datasets_.
-##' @param meta a data.frame of meta information about the element of lists
-##' @param comment set to "", NULL or NA for not comment
-##' @param path directory where the file should be saved. If missing current working directory is used.
-##' @param outfile name of the output file.
+##' - `settings.xml`          files for "LabKey lists"
+##'
+##' - `datasets_manifest.xml` files for "LabKey study datasets"
+##'
+##' @param datasets A list of data.frames to be uploaded as "LabKey study".
+##' @param meta a data.frame of meta information about the element of `datasets`.
+##' See `metaInfoDatasets`.
+##' @param path Path to the directory where the file should be saved.
+##' If missing current working directory is used.
+##' @param comment Comment to be inserted into the xml file. set to "", NULL or NA for no comment.
+##' @param outfile Name of the output file.
 ##'
 ##' @import XML
 ##' @export
@@ -43,7 +63,7 @@ create.datasets.manifest.xml <- function (datasets,
     ## check meta
     test.meta.info.datasets (datasets = datasets, meta = meta)
     
-    ## demographicData to text in lower case (LabKey uses {true, false} Boolean values)
+    ## demographicData to lower case text. LabKey uses {true, false} for Boolean values.
     meta[,"demographicData"] <- tolower (meta[,"demographicData"])
     
     n.datasets.0 <- xmlNode (name = "datasets")
@@ -74,17 +94,22 @@ create.datasets.manifest.xml <- function (datasets,
 
 ##' Create datasets_metadata.xml file for LabKey datasets
 ##'
-##' This file types seem equivalent: 
-##' - lists.xml files for _LabKey lists_
-##' - datasets_metadata.xml files for _LabKey datasets_
+##' Creates a `datasets_metadata.xml` file
+##' describing each of the columns in the tables of a LabKey study.
 ##'
-##' Description uses 
+##' ##' This file types seem equivalent (but not completely equal) to:
 ##'
-##' @param datasets a list of data.frames to be uploaded as _LabKey datasets_.
-##' @param meta a data.frame of meta information about the element of datasets
-##' @param lookup lookup data.frame. See `lookupInit`
-##' @param path directory where the file should be saved. If missing current working directory is used.
-##' @param comment set to "", NULL or NA for not comment
+##' - `settings.xml`          files for "LabKey lists"
+##'
+##' - `datasets_manifest.xml` files for "LabKey study datasets"
+##'
+##' @param datasets A list of data.frames to be uploaded as _LabKey datasets_.
+##' @param meta A data.frame of meta information about the element of datasets
+##' @param lookup Lookup data.frame. See `lookupInit`
+##' @param path Path to the directory where the file should be saved.
+##' If missing current working directory is used.
+##' @param auto.key.name name for an automatic key column if this needs to be created.
+##' @param comment Comment to be inserted into the xml file. set to "", NULL or NA for no comment.
 ##' @param outfile name of the output file.
 ##'
 ##' @import XML
@@ -140,18 +165,17 @@ create.datasets.metadata.xml <- function (datasets,
 
 ##' Create column nodes for datasets
 ##' 
-##' To be used form within create.datasets.metadata.xml.
+##' To be used form within `create.datasets.metadata.xml`.
 ##'
-##' If subjectColumnName (ParticipantId) is __not unique__ (ie. not a Key)
+##' If subjectColumnName (ParticipantId) is NOT UNIQUE (ie. not a primary key)
 ##' a new "virtual" column is created to be the key in the table.
+##' Here "virtual" means it is not in the csv files but is declared in the
+##' datasets_metadata.xml file and is created by LabKey when data are imported.
 ##'
-##' "Virtual" means it is not in the csv files but is declared in the
-##' datasets_metadata.xml file and is created in LabKey when data are imported.
-##'
-##' @param df a data.frame; an element from datasets
-##' @param lookup lookup data.frame. See *lookupInit*
-##' @param subjectColumnName ParticipantId column name.
-##' @param auto.key.name name for the automatic key column if this needs to be created.
+##' @param df A data.frame. An element from the `datasets` list.
+##' @param lookup Lookup data.frame. See `lookupInit`.
+##' @param subjectColumnName The column to be used as primary participant identifier. Usually "ParticipantId".
+##' @param auto.key.name name for an automatic key column if this needs to be created.
 ##'
 ##' @import XML
 ##' @export
@@ -185,7 +209,6 @@ create.datasets.columns.node <- function (df,
     }
     
     ## Create an extra "virtual" key column if PatientId is not unique.
-    
     needskey <- any (duplicated (df[,subjectColumnName]), na.rm = TRUE)
     if (needskey) {
         n.column <- xmlNode (name = "column",
@@ -205,7 +228,7 @@ create.datasets.columns.node <- function (df,
 
 ##' Creates a fk node for lookups
 ##'
-##' Creates a fk node for those columns which will have a lookup link in LabKey.
+##' Creates a fk node for those columns which will have a `lookup` link in LabKey.
 ##' 
 ##' fkNode is intended to be used within `create.datasets.columns.node`
 ##' particularly in `addChildren` `kids` parameter.
@@ -213,12 +236,12 @@ create.datasets.columns.node <- function (df,
 ##' 
 ##' https://www.labkey.org/download/schema-docs/xml-schemas/schemas/tableInfo_xsd/schema-summary.html#r184
 ##' 
-##' @param schema the LabKey schema where the lookup table should be found.
+##' @param schema The LabKey schema where the lookup table should be found.
 ##' Usually "lists" or "study".
 ##' If empty, the target ("one" side) table is assumed to exist in the same schema as the "many" side table.
 ##' @param table The name of the target table of the relationship, the "one" side of the many-to-one relationship.
 ##' @param column The name of the target column in the target table of the fk relationship.
-##' @param display The name of the column in the lookup's target that should be shown as the value.
+##' @param display The name of the column in the lookups target that should be shown as the value.
 ##' If not specified, defaults to the lookup target's title column.
 ##'
 ##' @return A list containing the fk node or an `empty` list.

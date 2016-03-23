@@ -7,7 +7,7 @@
 fkNode(schema = "lists", table, column = NA, display = NA)
 }
 \arguments{
-\item{schema}{the LabKey schema where the lookup table should be found.
+\item{schema}{The LabKey schema where the lookup table should be found.
 Usually "lists" or "study".
 If empty, the target ("one" side) table is assumed to exist in the same schema as the "many" side table.}
 
@@ -15,14 +15,14 @@ If empty, the target ("one" side) table is assumed to exist in the same schema a
 
 \item{column}{The name of the target column in the target table of the fk relationship.}
 
-\item{display}{The name of the column in the lookup's target that should be shown as the value.
+\item{display}{The name of the column in the lookups target that should be shown as the value.
 If not specified, defaults to the lookup target's title column.}
 }
 \value{
 A list containing the fk node or an `empty` list.
 }
 \description{
-Creates a fk node for those columns which will have a lookup link in LabKey.
+Creates a fk node for those columns which will have a `lookup` link in LabKey.
 }
 \details{
 fkNode is intended to be used within `create.datasets.columns.node`

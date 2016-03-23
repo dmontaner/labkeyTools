@@ -6,7 +6,21 @@
 \usage{
 create.datasets.dataset.file(name, outfile = paste0(name, ".dataset"), path)
 }
+\arguments{
+\item{name}{The name or "label" of the study.
+See the `folderLabel` parameter in the `saveStudy` function.}
+
+\item{outfile}{Name of the output file.}
+
+\item{path}{Path to the directory where the file should be saved.
+If missing current working directory is used.}
+}
 \description{
-Create .dataset file for LabKey datasets
+Creates an empty file which needs to exist in the study folder structures.
+}
+\details{
+The file should be named as the "label" of the study or study folder
+and have the extension `.dataset`.
+It can be empty or have just comment lines.
 }
 

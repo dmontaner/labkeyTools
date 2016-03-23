@@ -8,19 +8,27 @@ create.datasets.manifest.xml(datasets, meta = metaInfoDatasets(datasets),
   path, comment, outfile = "datasets_manifest.xml")
 }
 \arguments{
-\item{datasets}{a list of data.frames to be uploaded as _LabKey datasets_.}
+\item{datasets}{A list of data.frames to be uploaded as "LabKey study".}
 
-\item{meta}{a data.frame of meta information about the element of lists}
+\item{meta}{a data.frame of meta information about the element of `datasets`.
+See `metaInfoDatasets`.}
 
-\item{path}{directory where the file should be saved. If missing current working directory is used.}
+\item{path}{Path to the directory where the file should be saved.
+If missing current working directory is used.}
 
-\item{comment}{set to "", NULL or NA for not comment}
+\item{comment}{Comment to be inserted into the xml file. set to "", NULL or NA for no comment.}
 
-\item{outfile}{name of the output file.}
+\item{outfile}{Name of the output file.}
 }
 \description{
-This file types seem equivalent: 
-- settings.xml files for _LabKey lists_
-- datasets_manifest.xml files for _LabKey datasets_
+Creates a `manifest.xml` file describing the tables or "datasets" in a
+LabKey study.
+}
+\details{
+This file types seem equivalent (but not completely equal) to:
+
+- `settings.xml`          files for "LabKey lists"
+
+- `datasets_manifest.xml` files for "LabKey study datasets"
 }
 

@@ -11,7 +11,7 @@
 ##' @param middle  needed sub folder
 ##' @param subpath needed sub folder
 ##'
-## @export
+##' @export
 
 ## lists (alone) folder
 create.lists.folder.structure <- function (path) {
