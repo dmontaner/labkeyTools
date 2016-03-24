@@ -14,7 +14,7 @@ create.datasets.columns.node(df, lookup = NULL, subjectColumnName,
 
 \item{subjectColumnName}{The column to be used as primary participant identifier. Usually "ParticipantId".}
 
-\item{auto.key.name}{name for an automatic key column if this needs to be created.}
+\item{auto.key.name}{Name for an automatic key column if this needs to be created.}
 }
 \description{
 To be used form within `create.datasets.metadata.xml`.

@@ -8,7 +8,7 @@ metaInfoLists(lists, key = NA, lookupDisplay = NA, baseID = 100,
   verbose = TRUE)
 }
 \arguments{
-\item{lists}{a list of data.frames to be uploaded as _LabKey lists_.}
+\item{lists}{a list of data.frames to be uploaded as "LabKey lists".}
 
 \item{key}{vector of length as length (lists) indicating the column which is key in the table}
 

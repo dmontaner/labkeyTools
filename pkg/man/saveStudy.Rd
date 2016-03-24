@@ -4,33 +4,68 @@
 \alias{saveStudy}
 \title{Save a study to be imported into LabKey}
 \usage{
-saveStudy(datasets, folderLabel, meta.datasets, lookup = NULL,
-  protect = TRUE, folderTitle = folderLabel, path = paste0(folderLabel,
-  ".folder"), zip = TRUE, keep = TRUE, timepointType = "DATE",
-  securityType = "BASIC_WRITE", subjectColumnName = "ParticipantId",
-  subjectNounSingular = "Participant", subjectNounPlural = "Participants",
-  baseID = 5000, format = TRUE, validate = TRUE,
-  startdDate = format(Sys.Date(), "\%Y-\%m-\%dZ"), auto.key.name = "lktKey",
+saveStudy(datasets, folderLabel, folderTitle = folderLabel, meta.datasets,
+  lookup = NULL, protect = TRUE, path = paste0(folderLabel, ".folder"),
+  zip = TRUE, keep = TRUE, timepointType = "DATE",
+  subjectColumnName = "ParticipantId", subjectNounSingular = "Participant",
+  subjectNounPlural = "Participants", securityType = "BASIC_WRITE",
+  startdDate = format(Sys.Date(), "\%Y-\%m-\%dZ"), baseID = 5000,
+  format = TRUE, validate = TRUE, auto.key.name = "lktKey",
   description = "Contains up to one row of \%s data for each Participant/Visit combination.",
   verbose = TRUE)
 }
 \arguments{
-\item{keep}{Keep (don't delete) decompressed files
+\item{datasets}{A list of data.frames to be uploaded as "LabKey study".}
 
-https://www.labkey.org/home/Documentation/wiki-page.view?name=studySetupManual
+\item{folderLabel}{Folder label for LabKey.}
 
-https://www.labkey.org/home/Documentation/wiki-page.view?name=setStudyProperties
+\item{folderTitle}{Folder title for LabKey.}
 
+\item{meta.datasets}{A data.frame of meta information about the element of `datasets`.
+See `metaInfoDatasets`.}
 
+\item{lookup}{Lookup data.frame. See `lookupInit`}
 
-Study Datasets
+\item{protect}{If TRUE it will not overwrite the `path` file if it already exists.}
 
-do also saveLists ## como saveStudy}
+\item{path}{Path to the directory where the file should be saved.
+If missing current working directory is used.}
 
-\item{dfl}{a list of data.frames}
+\item{zip}{If TRUE the files created in `path` will be compressed as needed to be uploaded to LabKey.x}
+
+\item{keep}{if TRUE uncompressed files are kept, otherwise deleted.}
+
+\item{timepointType}{"DATE" or "VISIT".}
+
+\item{subjectColumnName}{usually "ParticipantId".}
+
+\item{subjectNounSingular}{as LabKey parameter}
+
+\item{subjectNounPlural}{as LabKey parameter}
+
+\item{securityType}{usually "BASIC_WRITE" or "BASIC_READ"}
+
+\item{startdDate}{as LabKey parameter}
+
+\item{baseID}{First id (minus one) to be used to name the tables. See `metaInfoLists`.}
+
+\item{format}{If TRUE the data.frames in `lists` are formatted for a more suitable representation in LabKey.}
+
+\item{validate}{If TRUE some validation of the data.sets in `lists` are carried out.}
+
+\item{auto.key.name}{Name for an automatic key column if this needs to be created.}
+
+\item{description}{Text description for tables.}
+
+\item{verbose}{verbose mode}
 }
 \description{
 To upload the study creating a new project
 go to LabKey > Newproject
+}
+\details{
+https://www.labkey.org/home/Documentation/wiki-page.view?name=studySetupManual
+
+https://www.labkey.org/home/Documentation/wiki-page.view?name=setStudyProperties
 }
 

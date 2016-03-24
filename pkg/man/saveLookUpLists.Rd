@@ -6,12 +6,25 @@
 \usage{
 saveLookUpLists(lists, path, key = 1, lookupDisplay = 2, ...)
 }
+\arguments{
+\item{lists}{A list of data.frames to be uploaded as `LabKey lists`.}
+
+\item{path}{Path to the directory where the file should be saved.}
+
+\item{key}{Key column in the table. Set to 1.}
+
+\item{lookupDisplay}{Display column in the table when used as a `lookup` table. Set to 2.}
+
+\item{...}{Other parameters to be pasted to saveLists.}
+}
 \description{
-A wrapper function to saveLists
+A wrapper function to `saveLists`.
 }
 \details{
 Assumes:
+
 - keys are in the firs column
+
 - values or labels are in the second column
 }
 

@@ -9,16 +9,17 @@ create.datasets.metadata.xml(datasets, meta = metaInfoDatasets(datasets),
   outfile = "datasets_metadata.xml")
 }
 \arguments{
-\item{datasets}{A list of data.frames to be uploaded as _LabKey datasets_.}
+\item{datasets}{A list of data.frames to be uploaded as "LabKey study".}
 
-\item{meta}{A data.frame of meta information about the element of datasets}
+\item{meta}{a data.frame of meta information about the element of `datasets`.
+See `metaInfoDatasets`.}
 
 \item{lookup}{Lookup data.frame. See `lookupInit`}
 
 \item{path}{Path to the directory where the file should be saved.
 If missing current working directory is used.}
 
-\item{auto.key.name}{name for an automatic key column if this needs to be created.}
+\item{auto.key.name}{Name for an automatic key column if this needs to be created.}
 
 \item{comment}{Comment to be inserted into the xml file. set to "", NULL or NA for no comment.}
 
@@ -26,10 +27,10 @@ If missing current working directory is used.}
 }
 \description{
 Creates a `datasets_metadata.xml` file
-describing each of the columns in the tables of a LabKey study.
+describing each of the columns in the tables of a "LabKey study".
 }
 \details{
-##' This file types seem equivalent (but not completely equal) to:
+##' This file types seem equivalent (but not completely equal):
 
 - `settings.xml`          files for "LabKey lists"
 

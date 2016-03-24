@@ -35,14 +35,14 @@ create.datasets.dataset.file <- function (name,
 
 ##' Create manifest.xml file for LabKey datasets
 ##'
-##' Creates a `manifest.xml` file describing the tables or "datasets" in a
+##' Creates a `datasets_manifest.xml` file describing the tables or "datasets" in a
 ##' LabKey study.
 ##' 
-##' This file types seem equivalent (but not completely equal) to:
+##' This file types seem equivalent (but not completely equal):
 ##'
-##' - `settings.xml`          files for "LabKey lists"
-##'
-##' - `datasets_manifest.xml` files for "LabKey study datasets"
+##' - `lists.xml`             files for "LabKey lists"
+##' 
+##' - `datasets_metadata.xml` files for "LabKey study datasets"
 ##'
 ##' @param datasets A list of data.frames to be uploaded as "LabKey study".
 ##' @param meta a data.frame of meta information about the element of `datasets`.
@@ -95,20 +95,21 @@ create.datasets.manifest.xml <- function (datasets,
 ##' Create datasets_metadata.xml file for LabKey datasets
 ##'
 ##' Creates a `datasets_metadata.xml` file
-##' describing each of the columns in the tables of a LabKey study.
+##' describing each of the columns in the tables of a "LabKey study".
 ##'
-##' ##' This file types seem equivalent (but not completely equal) to:
+##' ##' This file types seem equivalent (but not completely equal):
 ##'
 ##' - `settings.xml`          files for "LabKey lists"
 ##'
 ##' - `datasets_manifest.xml` files for "LabKey study datasets"
 ##'
-##' @param datasets A list of data.frames to be uploaded as _LabKey datasets_.
-##' @param meta A data.frame of meta information about the element of datasets
+##' @param datasets A list of data.frames to be uploaded as "LabKey study".
+##' @param meta a data.frame of meta information about the element of `datasets`.
+##' See `metaInfoDatasets`.
 ##' @param lookup Lookup data.frame. See `lookupInit`
 ##' @param path Path to the directory where the file should be saved.
 ##' If missing current working directory is used.
-##' @param auto.key.name name for an automatic key column if this needs to be created.
+##' @param auto.key.name Name for an automatic key column if this needs to be created.
 ##' @param comment Comment to be inserted into the xml file. set to "", NULL or NA for no comment.
 ##' @param outfile name of the output file.
 ##'
@@ -175,7 +176,7 @@ create.datasets.metadata.xml <- function (datasets,
 ##' @param df A data.frame. An element from the `datasets` list.
 ##' @param lookup Lookup data.frame. See `lookupInit`.
 ##' @param subjectColumnName The column to be used as primary participant identifier. Usually "ParticipantId".
-##' @param auto.key.name name for an automatic key column if this needs to be created.
+##' @param auto.key.name Name for an automatic key column if this needs to be created.
 ##'
 ##' @import XML
 ##' @export

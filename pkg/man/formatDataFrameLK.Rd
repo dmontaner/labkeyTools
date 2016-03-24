@@ -2,12 +2,18 @@
 % Please edit documentation in R/validation_formating_tools.r
 \name{formatDataFrameLK}
 \alias{formatDataFrameLK}
-\title{Numeric variables which are effectively integers are formatted as.integers.
-Those which are long integers are converted into text.}
+\title{Format a data.frame for LabKey}
 \usage{
 formatDataFrameLK(df, long.int.as.char = TRUE, long = 10^9)
 }
+\arguments{
+\item{df}{A data.frame. An element from the `datasets` list.}
+
+\item{long.int.as.char}{If TRUE, long integers will be uploaded as character variables.}
+
+\item{long}{The threshold to consider an integer to be long long.}
+}
 \description{
-HACER UN CHARACTER TO numeric y luego to integer
+Format a data.frame for LabKey
 }
 

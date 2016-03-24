@@ -5,9 +5,45 @@
 \title{Save lists to be exported to LabKey}
 \usage{
 saveLists(lists, path, meta, protect = TRUE, format = TRUE,
-  long.int.as.char = TRUE, long = 10^9, nicenames = TRUE,
-  validate = TRUE, key = NA, lookupDisplay = NA, baseID = 100,
-  auto.key.name = "lktKey", zip = TRUE, keep = !zip, verbose = TRUE)
+  long.int.as.char = TRUE, long = 10^9, nicenames = TRUE, key = NA,
+  lookupDisplay = NA, baseID = 100, auto.key.name = "lktKey",
+  zip = TRUE, keep = !zip, verbose = TRUE)
+}
+\arguments{
+\item{lists}{A list of data.frames to be uploaded as `LabKey lists`.}
+
+\item{path}{Path to the directory where the file should be saved.
+If zip = TRUE this directory will be zipped.}
+
+\item{meta}{A data.frame of meta information about the element of `lists`.
+See `metaInfoLists`.}
+
+\item{protect}{If TRUE it will not overwrite the `path` file if it already exists.
+If protect = FALSE then, if the file exist it will be deleted and created again.}
+
+\item{format}{If TRUE the data.frames in `lists` are formatted for a more suitable representation in LabKey.
+See `formatDataFrameList`.}
+
+\item{long.int.as.char}{If TRUE, long integers will be uploaded as character variables.}
+
+\item{long}{The threshold to consider an integer long.}
+
+\item{nicenames}{If TRUE the column names are processed to be compatible with LabKey standards.}
+
+\item{key}{Key column in the table. See `metaInfoLists`.}
+
+\item{lookupDisplay}{Display column in the table when used as a `lookup` table. See `metaInfoLists`.
+baseID = 100,}
+
+\item{baseID}{First id (minus one) to be used to name the tables. See `metaInfoLists`.}
+
+\item{auto.key.name}{Name for an automatic key column if this needs to be created.}
+
+\item{zip}{If TRUE the files created in `path` will be compressed as needed to be uploaded to LabKey.x}
+
+\item{keep}{if TRUE uncompressed files are kept, otherwise deleted.}
+
+\item{verbose}{verbose mode}
 }
 \description{
 To upload the saved list go to LabKey and then:
@@ -45,5 +81,10 @@ with the same name; this could result in data loss and cannot be undone.
 See here for list Import into LabKey
 
 https://help.labkey.org/wiki/home/Documentation/Archive/15.2/page.view?name=exportImportLists
+
+long.int.as.char TRUE, long integers will be uploaded as character variables.
+Suitable for phone numbers, NHS numbers and some other ids.
+
+`key`, `lookupDisplay` and `baseID` parameters are overwritten by the `meta` data.frame
 }
 

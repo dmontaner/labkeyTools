@@ -4,14 +4,35 @@
 \alias{create.study.study.xml}
 \title{Create study.xml file for LabKey}
 \usage{
-create.study.study.xml(label, timepointType = "DATE",
-  subjectNounSingular = "Participant", subjectNounPlural = "Participants",
-  subjectColumnName = "ParticipantId", startdDate = format(Sys.Date(),
-  "\%Y-\%m-\%dZ"), securityType = "BASIC_WRITE", path,
+create.study.study.xml(label, path, timepointType = "DATE",
+  subjectColumnName = "ParticipantId", subjectNounSingular = "Participant",
+  subjectNounPlural = "Participants", startdDate = format(Sys.Date(),
+  "\%Y-\%m-\%dZ"), securityType = "BASIC_WRITE",
   file.dataset = paste0(label, ".dataset"), comment, outfile = "study.xml")
 }
 \arguments{
-\item{securityType}{"BASIC_READ" or "BASIC_WRITE"}
+\item{label}{The folder label in LabKey.}
+
+\item{path}{Path to the directory where the file should be saved.
+If missing current working directory is used.}
+
+\item{timepointType}{"DATE" or "VISIT".}
+
+\item{subjectColumnName}{usually "ParticipantId".}
+
+\item{subjectNounSingular}{as LabKey parameter}
+
+\item{subjectNounPlural}{as LabKey parameter}
+
+\item{startdDate}{as LabKey parameter}
+
+\item{securityType}{usually "BASIC_WRITE" or "BASIC_READ"}
+
+\item{file.dataset}{name of the .dataset file.}
+
+\item{comment}{Comment to be inserted into the xml file. set to "", NULL or NA for no comment.}
+
+\item{outfile}{Name of the output file.}
 }
 \description{
 Create study.xml file for LabKey

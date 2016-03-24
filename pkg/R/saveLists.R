@@ -38,16 +38,47 @@
 ##' See here for list Import into LabKey
 ##'
 ##' https://help.labkey.org/wiki/home/Documentation/Archive/15.2/page.view?name=exportImportLists
+##' 
+##' long.int.as.char TRUE, long integers will be uploaded as character variables.
+##' Suitable for phone numbers, NHS numbers and some other ids.
+##'
+##' `key`, `lookupDisplay` and `baseID` parameters are overwritten by the `meta` data.frame
+##' 
+##' @param lists A list of data.frames to be uploaded as `LabKey lists`.
+##' @param path Path to the directory where the file should be saved.
+##' If zip = TRUE this directory will be zipped.
+##' @param meta A data.frame of meta information about the element of `lists`.
+##' See `metaInfoLists`.
+##' @param protect If TRUE it will not overwrite the `path` file if it already exists.
+##' If protect = FALSE then, if the file exist it will be deleted and created again.
+##' @param format If TRUE the data.frames in `lists` are formatted for a more suitable representation in LabKey.
+##' See `formatDataFrameList`.
+##' @param long.int.as.char If TRUE, long integers will be uploaded as character variables.
+##' @param long The threshold to consider an integer long. 
+##' @param nicenames If TRUE the column names are processed to be compatible with LabKey standards.
+## @param validate If TRUE some validation of the data.sets in `lists` are carried out.
+##' @param key Key column in the table. See `metaInfoLists`.
+##' @param lookupDisplay Display column in the table when used as a `lookup` table. See `metaInfoLists`.
+##'                        baseID = 100,
+##' @param baseID First id (minus one) to be used to name the tables. See `metaInfoLists`.
+##' @param auto.key.name Name for an automatic key column if this needs to be created.
+##' @param zip If TRUE the files created in `path` will be compressed as needed to be uploaded to LabKey.x
+##' @param keep if TRUE uncompressed files are kept, otherwise deleted.
+##' @param verbose verbose mode
+##'
+##' @import XML
 ##'
 ##' @export
+
 saveLists <- function (lists,
                        path, ## compulsory here in the function; that is why I change the order
                        meta,
                        protect = TRUE, ## if TRUE gives an error if the path exist
-                       format = TRUE, ##format columns of the datasets or lists. May be change this parameter name.
-                       long.int.as.char = TRUE, long = 10^9, ##after format
-                       nicenames = TRUE,  ### May be change to NICECOLNAMES
-                       validate = TRUE,
+                       format = TRUE,  ##format columns of the datasets or lists. May be change this parameter name.
+                       long.int.as.char = TRUE,
+                       long = 10^9, ##after format and long.int.as.char
+                       nicenames = TRUE,  ### May need to be change to NICECOLNAMES
+                       #validate = TRUE,
                        key = NA,
                        lookupDisplay = NA,
                        baseID = 100,
@@ -98,12 +129,20 @@ saveLists <- function (lists,
 
 ##' Save Lookup Lists
 ##' 
-##' A wrapper function to saveLists
+##' A wrapper function to `saveLists`.
 ##'
 ##' Assumes:
+##' 
 ##' - keys are in the firs column
+##'
 ##' - values or labels are in the second column
 ##'
+##' @param lists A list of data.frames to be uploaded as `LabKey lists`.
+##' @param path Path to the directory where the file should be saved.
+##'
+##' @param key Key column in the table. Set to 1.
+##' @param lookupDisplay Display column in the table when used as a `lookup` table. Set to 2.
+##' @param ... Other parameters to be pasted to saveLists.
 ##'
 ##' @export
 

@@ -8,19 +8,27 @@ create.lists.settings.xml(lists, meta = metaInfoLists(lists), path, comment,
   outfile = "settings.xml")
 }
 \arguments{
-\item{lists}{a list of data.frames to be uploaded as LabKey _lists_.}
+\item{lists}{A list of data.frames to be uploaded as `LabKey lists`.}
 
-\item{meta}{a data.frame of meta information about the element of lists}
+\item{meta}{A data.frame of meta information about the element of `lists`.
+See `metaInfoLists`.}
 
-\item{path}{directory where the file should be saved. If missing current working directory is used.}
+\item{path}{Path to the directory where the file should be saved.
+If missing current working directory is used.}
 
-\item{comment}{set to "", NULL or NA for not comment}
+\item{comment}{Comment to be inserted into the xml file. set to "", NULL or NA for no comment.}
 
-\item{outfile}{name of the output file.}
+\item{outfile}{Name of the output file.}
 }
 \description{
-This file types seem equivalent: 
-- settings.xml files for _LabKey lists_
-- datasets_manifest.xml files for _LabKey datasets_
+Creates a `settings.xml` file describing the tables or "lists"
+to be uploaded to LabKey.
+}
+\details{
+This file types seem equivalent (but not completely equal):
+
+- `settings.xml`          files for "LabKey lists"
+
+- `datasets_manifest.xml` files for "LabKey study datasets"
 }
 

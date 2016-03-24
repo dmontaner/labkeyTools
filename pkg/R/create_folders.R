@@ -2,14 +2,12 @@
 ##2016-03-14 david.montaner@gmail.com
 
 
-##' Create folder structures
+##' Create a list folder structures
 ##' 
 ##' Functions to create folder structures needed in LabKey
 ##' to Import From Local Zip Archives
 ##'
 ##' @param path the path to the folder to be created. If exists it will be overwritten.
-##' @param middle  needed sub folder
-##' @param subpath needed sub folder
 ##'
 ##' @export
 
@@ -21,6 +19,13 @@ create.lists.folder.structure <- function (path) {
 
 ##################################################
 
+
+##' Create a folder structures
+##'
+##' Base for studies
+##' 
+##' @param path the path to the folder to be created. If exists it will be overwritten.
+##'
 ##' @export
 
 ## main folder (in a study)
@@ -31,6 +36,13 @@ create.folder.structure <- function (path) {
 
 ##################################################
 
+##' Create a study folder structures
+##'
+##' Base for studies
+##' 
+##' @param path the path to the folder to be created. If exists it will be overwritten.
+##' @param subpath needed sub folder
+##'
 ##' @export
 
 ## study
@@ -46,6 +58,15 @@ create.study.folder.structure <- function (path, subpath = "study") {
 
 ##################################################
 
+
+##' Create a dataset folder structure
+##'
+##' Base for studies
+##' 
+##' @param path the path to the folder to be created. If exists it will be overwritten.
+##' @param middle  needed sub folder
+##' @param subpath needed sub folder
+##'
 ##' @export
 
 ## dataset (goes within the study)

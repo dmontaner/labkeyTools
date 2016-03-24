@@ -4,15 +4,22 @@
 
 ##' Create settings.xml file for LabKey lists
 ##'
-##' This file types seem equivalent: 
-##' - settings.xml files for _LabKey lists_
-##' - datasets_manifest.xml files for _LabKey datasets_
+##' Creates a `settings.xml` file describing the tables or "lists"
+##' to be uploaded to LabKey.
+##' 
+##' This file types seem equivalent (but not completely equal):
 ##'
-##' @param lists a list of data.frames to be uploaded as LabKey _lists_.
-##' @param meta a data.frame of meta information about the element of lists
-##' @param comment set to "", NULL or NA for not comment
-##' @param path directory where the file should be saved. If missing current working directory is used.
-##' @param outfile name of the output file.
+##' - `settings.xml`          files for "LabKey lists"
+##'
+##' - `datasets_manifest.xml` files for "LabKey study datasets"
+##'
+##' @param lists A list of data.frames to be uploaded as `LabKey lists`.
+##' @param meta A data.frame of meta information about the element of `lists`.
+##' See `metaInfoLists`.
+##' @param path Path to the directory where the file should be saved.
+##' If missing current working directory is used.
+##' @param comment Comment to be inserted into the xml file. set to "", NULL or NA for no comment.
+##' @param outfile Name of the output file.
 ##'
 ##' @import XML
 ##' @export
@@ -51,17 +58,26 @@ create.lists.settings.xml <- function (lists, ## is not really required
 
 ##' Create lists.xml file for LabKey lists
 ##'
-##' This file types seem equivalent: 
-##' - lists.xml files for _LabKey lists_
-##' - datasets_metadata.xml files for _LabKey datasets_
+##' Creates a `lists.xml` file
+##' describing each of the columns in the tables
+##' to be uploaded as "LabKey lists".
 ##'
-##' @param lists a list of data.frames to be uploaded as LabKey _lists_.
-##' @param meta a data.frame of meta information about the element of lists
-##' @param path directory where the file should be saved. If missing current working directory is used.
-##' @param comment set to "", NULL or NA for not comment
-##' @param nicenames should column names be "cleaned". See lktNiceNames.
+##' This file types seem equivalent (but not completely equal):
+##'
+##' - `lists.xml`             files for "LabKey lists"
 ##' 
-##' @param outfile name of the output file.
+##' - `datasets_metadata.xml` files for "LabKey study datasets"
+##'
+##' @param lists A list of data.frames to be uploaded as `LabKey lists`.
+##' @param meta a data.frame of meta information about the element of `lists`.
+##' See `metaInfoLists`.
+##' @param path Path to the directory where the file should be saved.
+##' If missing current working directory is used.
+##' @param nicenames If TRUE the column names are processed to be compatible with LabKey standards.
+##' See `lktNiceNames`.
+##' @param auto.key.name Name for an automatic key column if this needs to be created.
+##' @param comment Comment to be inserted into the xml file. set to "", NULL or NA for no comment.
+##' @param outfile Name of the output file.
 ##'
 ##' @import XML
 ##' @export
@@ -125,9 +141,11 @@ create.lists.lists.xml <- function (lists,
 ##'
 ##' If keycol is NA a new key column will be created (see `auto.key.name`)
 ##'
-##' @param df a data.frame. Element of lists.
-##' @param keycol the number or name of the column in `df` which is considered to be a key.
-##' @param auto.key.name name for the automatic key column if this needs to be created.
+##' @param df A data.frame. An element from the `lists` list.
+##' @param keycol The number or name of the column in `df` which is considered to be a key.
+##' @param nicenames If TRUE the column names are processed to be compatible with LabKey standards.
+##' See `lktNiceNames`.
+##' @param auto.key.name Name for an automatic key column if this needs to be created.
 ##'
 ##' @import XML
 ##' @export

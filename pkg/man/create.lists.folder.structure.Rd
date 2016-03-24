@@ -2,16 +2,12 @@
 % Please edit documentation in R/create_folders.R
 \name{create.lists.folder.structure}
 \alias{create.lists.folder.structure}
-\title{Create folder structures}
+\title{Create a list folder structures}
 \usage{
 create.lists.folder.structure(path)
 }
 \arguments{
 \item{path}{the path to the folder to be created. If exists it will be overwritten.}
-
-\item{middle}{needed sub folder}
-
-\item{subpath}{needed sub folder}
 }
 \description{
 Functions to create folder structures needed in LabKey

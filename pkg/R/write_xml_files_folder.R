@@ -1,7 +1,18 @@
 ##write_xml_files_folder.R
 ##2016-03-14 david.montaner@gmail.com
 
+
+##' Create a folder.xml file
+##'
+##' @param label Folder label as in LabKey.
+##' @param title Folder title as in LabKey.
+##' @param path Path to the directory where the file should be saved.
+##' If missing current working directory is used.
+##' @param comment Comment to be inserted into the xml file. set to "", NULL or NA for no comment.
+##' @param outfile Name of the output file.
+##'
 ##' @import XML
+##'
 ##' @export
 
 create.folder.folder.xml <- function (label, ##folderLabel,
@@ -22,4 +33,3 @@ create.folder.folder.xml <- function (label, ##folderLabel,
     ## SAVE
     lkt.save.xml (xml = n.folder, path = path, outfile = outfile, comment = comment)
 }
-

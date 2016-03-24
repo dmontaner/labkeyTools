@@ -1,8 +1,6 @@
 ##saveStudy.R
 ##2016-03-14 david.montaner@gmail.com
 
-### los nombres de los ficheros que se salvan hay que parametrizarlos...
-
 ## Some functions to create folder.zip exported tables
 
 ## final function
@@ -31,7 +29,7 @@
 ## (From a database point of view, assay/specimen datasets have the same primary keys as Clinical data,
 ## plus an __optional third key__. Multiple rows per subject/time point are allowed.)
 
-## VER LAS FUNCIONES PARA HACER CATEGORIAS O GRUPOS DE PACIENTES... ES MUY FACIL
+
 
 
 
@@ -40,41 +38,59 @@
 ##' To upload the study creating a new project
 ##' go to LabKey > Newproject 
 ##' 
-##'
-##' @param dfl a list of data.frames
-##' @param keep Keep (don't delete) decompressed files
-##'
 ##' https://www.labkey.org/home/Documentation/wiki-page.view?name=studySetupManual
 ##'
 ##' https://www.labkey.org/home/Documentation/wiki-page.view?name=setStudyProperties
 ##'
+##' @param datasets A list of data.frames to be uploaded as "LabKey study".
+##' @param folderLabel Folder label for LabKey.
+##' @param folderTitle Folder title for LabKey.
+##' @param meta.datasets A data.frame of meta information about the element of `datasets`.
+##' See `metaInfoDatasets`.
+##' @param lookup Lookup data.frame. See `lookupInit`
+##' @param protect If TRUE it will not overwrite the `path` file if it already exists.
+##' @param path Path to the directory where the file should be saved.
+##' If missing current working directory is used.
+##' @param zip If TRUE the files created in `path` will be compressed as needed to be uploaded to LabKey.x
+##' @param keep if TRUE uncompressed files are kept, otherwise deleted.
+##' @param timepointType "DATE" or "VISIT".
+##' @param subjectColumnName usually "ParticipantId".
+##' @param subjectNounSingular as LabKey parameter
+##' @param subjectNounPlural   as LabKey parameter
+##' @param securityType usually "BASIC_WRITE" or "BASIC_READ"
+##' @param startdDate          as LabKey parameter
+##' @param baseID First id (minus one) to be used to name the tables. See `metaInfoLists`.
+##' @param format If TRUE the data.frames in `lists` are formatted for a more suitable representation in LabKey.
+##' @param validate If TRUE some validation of the data.sets in `lists` are carried out.
+##' @param auto.key.name Name for an automatic key column if this needs to be created.
+##' @param description Text description for tables.
+##' @param verbose verbose mode
 ##'
-##'
-##' Study Datasets
-##'
-##' do also saveLists ## como saveStudy
+##' @import XML
 ##'
 ##' @export
 
 saveStudy <- function (datasets,
-                       folderLabel, ### REVISAR ESTE ORDEN
+                       folderLabel,
+                       folderTitle = folderLabel,
                        meta.datasets,
                        lookup = NULL, 
                        protect = TRUE, ## if TRUE gives an error if the path exist
                        ##meta.datasets = metaInfoDatasets (datasets, baseID),
-                       folderTitle = folderLabel,
                        path = paste0 (folderLabel, ".folder"),
                        zip = TRUE,
                        keep = TRUE,
                        timepointType = "DATE",
-                       securityType = "BASIC_WRITE",
-                       subjectColumnName = "ParticipantId",
+                       subjectColumnName   = "ParticipantId",
                        subjectNounSingular = "Participant", 
-                       subjectNounPlural = "Participants",
+                       subjectNounPlural   = "Participants",
+                       securityType = "BASIC_WRITE",
+                       startdDate = format (Sys.Date(), "%Y-%m-%dZ"),
+                       
                        baseID = 5000,
                        format = TRUE,
                        validate = TRUE,
-                       startdDate = format (Sys.Date(), "%Y-%m-%dZ"),
+
                        auto.key.name = "lktKey",
                        description = "Contains up to one row of %s data for each Participant/Visit combination.",
                        verbose = TRUE) {

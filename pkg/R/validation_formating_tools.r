@@ -3,36 +3,38 @@
 ### VALIDATION
 ################################################################################
 
-## REFORMULAR PARA LISTAS Y DATAFRAMES
+## validateDataFrame <- function (df) {
+## }
+## validateDataFrameList <- function (datasets,
+##                                    meta.datasets) {
+##     ## if included meta.datasets is also validated
+##     ## not sure is needed
+## }
 
-## hacer validate para lookups
-
-### ESTAS A LO MEJOR QUEDAN EXPORTADAS...
-## cambiarles el nombre
-validateDataFrame <- function (df) {
-}
-validateDataFrameList <- function (datasets,
-                                      meta.datasets) {
-    ## if included meta.datasets is also validated
-    ## not sure is needed
-}
-
-formatDataFrameLK <- function (df) {
-}
-formatDataFrameList <- function (datasets) {
-}
+## formatDataFrameLK <- function (df) {
+## }
+## formatDataFrameList <- function (datasets) {
+## }
 
 ## just.numeric <- sapply (df, is.numeric) & ! sapply (df, is.integer)
 ## just.integer <- apply (df[just.numeric] == floor (df[just.numeric]), 2, all, na.rm = TRUE)
 ## just.long    <- apply (df[just.numeric] > long, 2, any, na.rm = TRUE)
 ## just.short <- !just.long
 
-##' Numeric variables which are effectively integers are formatted as.integers.
-##' Those which are long integers are converted into text.
+## Numeric variables which are effectively integers are formatted as.integers.
+## Those which are long integers are converted into text.
+##
+
+################################################################################
+
+##' Format a data.frame for LabKey
 ##'
-##'  HACER UN CHARACTER TO numeric y luego to integer
+##' @param df A data.frame. An element from the `datasets` list.
+##' @param long.int.as.char If TRUE, long integers will be uploaded as character variables.
+##' @param long The threshold to consider an integer to be long long. 
 ##'
 ##' @export
+
 formatDataFrameLK <- function (df, long.int.as.char = TRUE, long = 10^9) {
 
     ## COERCE CHARACTER TO NUMERIC
@@ -41,7 +43,7 @@ formatDataFrameLK <- function (df, long.int.as.char = TRUE, long = 10^9) {
         if (es.char) {
             suppressWarnings (nm <- as.numeric (df[,i]))
             if (all (is.na (df[,i]) == is.na (nm))) {
-                df[,i] <- nm ## if no NAs have been created I asume that the conversion is done properly
+                df[,i] <- nm ## if no NAs have been created I assume that the conversion is done properly
             }
         }
     }
@@ -69,7 +71,15 @@ formatDataFrameLK <- function (df, long.int.as.char = TRUE, long = 10^9) {
     return (df)
 }
 
+
+##' Format a data.frame list for LabKey
+##'
+##' @param datasets A list of data.frames to be uploaded as "LabKey study".
+##' @param long.int.as.char If TRUE, long integers will be uploaded as character variables.
+##' @param long The threshold to consider an integer to be long long. 
+##'
 ##' @export
+
 formatDataFrameList <- function (datasets, long.int.as.char = TRUE, long = 10^9) {
 
     ### REVISAR QUE LA LISTA TIENE NOMBRES
@@ -84,9 +94,14 @@ formatDataFrameList <- function (datasets, long.int.as.char = TRUE, long = 10^9)
 
 ################################################################################
 
-
-## include factors
-
+##' Validate a dataframe to be exported to LabKey
+##'
+##' Validate a data.frame list to be exported to LabKey
+##' 
+##' @param df A data.frame. An element from the `datasets` list.
+##' @param name name
+##' @param long.char Long character threshold.
+##'
 ##' @export
 
 validateDataFrame <- function (df, name = "", long.char = 3999
@@ -164,6 +179,12 @@ validateDataFrame <- function (df, name = "", long.char = 3999
 }
 
 
+
+##' Validate a dataframes
+##'
+##' @param datasets A list of data.frames to be uploaded as "LabKey study".
+##' @param meta.datasets a data.frame of meta information about the element of `datasets`.
+##' 
 ##' @export
 
 validateDataFrameList <- function (datasets,

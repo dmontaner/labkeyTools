@@ -13,7 +13,7 @@
 ##'
 ##' "key" and "lookupDisplay" are reserved names for the columns.
 ##' 
-##' @param lists a list of data.frames to be uploaded as _LabKey lists_.
+##' @param lists a list of data.frames to be uploaded as "LabKey lists".
 ##' @param key vector of length as length (lists) indicating the column which is key in the table
 ##' @param lookupDisplay vector of length as length (lists) indicating the column which is to be displayed when the table is uses as look-up.
 ##' @param baseID first id to be used (minus one)
@@ -52,11 +52,11 @@ metaInfoLists <- function (lists,
 
 
 
-##' Test Meta information in Lists
-##'
-##' Utility function to test lists and meta formats.
-##'
-##' @export
+## Test Meta information in Lists
+##
+## Utility function to test lists and meta formats.
+##
+## @export
 
 test.meta.info.lists <- function (lists, meta) {
     if (any (names (lists) != meta[,"name"])) {
@@ -122,11 +122,11 @@ metaInfoDatasets <- function (datasets,
 }
 
 
-##' Test Meta information in Datasets
-##'
-##' Utility function to test datasets and meta formats.
-##'
-##' @export
+## Test Meta information in Datasets
+##
+## Utility function to test datasets and meta formats.
+##
+## @export
 
 test.meta.info.datasets <- function (datasets, meta) {
     if (any (names (datasets) != meta[,"name"])) {

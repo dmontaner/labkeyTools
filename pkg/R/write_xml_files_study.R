@@ -4,19 +4,32 @@
 
 ##' Create study.xml file for LabKey
 ##'
-##' @param securityType "BASIC_READ" or "BASIC_WRITE"
 ##'
+##' @param label The folder label in LabKey.
+##' @param path Path to the directory where the file should be saved.
+##' If missing current working directory is used.
+##' @param timepointType "DATE" or "VISIT".
+##' @param subjectColumnName usually "ParticipantId".
+##' @param subjectNounSingular as LabKey parameter
+##' @param subjectNounPlural   as LabKey parameter
+##' @param startdDate          as LabKey parameter
+##' @param securityType usually "BASIC_WRITE" or "BASIC_READ"
+##' @param file.dataset name of the .dataset file.
+##' @param comment Comment to be inserted into the xml file. set to "", NULL or NA for no comment.
+##' @param outfile Name of the output file.
+##' 
+##' 
 ##' @import XML
 ##' @export
 
 create.study.study.xml <- function (label, ##folderLabel,
+                                    path,
                                     timepointType = "DATE",  ## see how to develop the "VISIT" value
+                                    subjectColumnName   = "ParticipantId",
                                     subjectNounSingular = "Participant",
                                     subjectNounPlural   = "Participants",
-                                    subjectColumnName   = "ParticipantId",
                                     startdDate = format (Sys.Date(), "%Y-%m-%dZ"),
                                     securityType = "BASIC_WRITE",  ## "BASIC_READ" "BASIC_WRITE"                                    
-                                    path,
                                     file.dataset = paste0 (label, ".dataset"),
                                     comment,
                                     outfile = "study.xml") {

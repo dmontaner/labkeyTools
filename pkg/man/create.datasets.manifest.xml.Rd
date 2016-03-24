@@ -21,14 +21,14 @@ If missing current working directory is used.}
 \item{outfile}{Name of the output file.}
 }
 \description{
-Creates a `manifest.xml` file describing the tables or "datasets" in a
+Creates a `datasets_manifest.xml` file describing the tables or "datasets" in a
 LabKey study.
 }
 \details{
-This file types seem equivalent (but not completely equal) to:
+This file types seem equivalent (but not completely equal):
 
-- `settings.xml`          files for "LabKey lists"
+- `lists.xml`             files for "LabKey lists"
 
-- `datasets_manifest.xml` files for "LabKey study datasets"
+- `datasets_metadata.xml` files for "LabKey study datasets"
 }
 

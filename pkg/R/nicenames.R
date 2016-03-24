@@ -24,7 +24,12 @@ lktNiceNames <- function (x) {
 }
 
 
-##' @import stringr
+##' Create names suitable for LabKey
+##'
+##' Transforms colnames in the data.frames or names of the list of dataframes. 
+##'
+##' @param x a character vector.
+##' 
 ##' @export
 
 lktNiceTitles <- function (x) {

@@ -9,21 +9,33 @@ create.lists.lists.xml(lists, meta = metaInfoLists(lists), path,
   outfile = "lists.xml")
 }
 \arguments{
-\item{lists}{a list of data.frames to be uploaded as LabKey _lists_.}
+\item{lists}{A list of data.frames to be uploaded as `LabKey lists`.}
 
-\item{meta}{a data.frame of meta information about the element of lists}
+\item{meta}{a data.frame of meta information about the element of `lists`.
+See `metaInfoLists`.}
 
-\item{path}{directory where the file should be saved. If missing current working directory is used.}
+\item{path}{Path to the directory where the file should be saved.
+If missing current working directory is used.}
 
-\item{nicenames}{should column names be "cleaned". See lktNiceNames.}
+\item{nicenames}{If TRUE the column names are processed to be compatible with LabKey standards.
+See `lktNiceNames`.}
 
-\item{comment}{set to "", NULL or NA for not comment}
+\item{auto.key.name}{Name for an automatic key column if this needs to be created.}
 
-\item{outfile}{name of the output file.}
+\item{comment}{Comment to be inserted into the xml file. set to "", NULL or NA for no comment.}
+
+\item{outfile}{Name of the output file.}
 }
 \description{
-This file types seem equivalent: 
-- lists.xml files for _LabKey lists_
-- datasets_metadata.xml files for _LabKey datasets_
+Creates a `lists.xml` file
+describing each of the columns in the tables
+to be uploaded as "LabKey lists".
+}
+\details{
+This file types seem equivalent (but not completely equal):
+
+- `lists.xml`             files for "LabKey lists"
+
+- `datasets_metadata.xml` files for "LabKey study datasets"
 }
 

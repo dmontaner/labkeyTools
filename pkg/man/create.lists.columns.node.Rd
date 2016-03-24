@@ -8,11 +8,14 @@ create.lists.columns.node(df, keycol = NA, nicenames = TRUE,
   auto.key.name = "lktKey")
 }
 \arguments{
-\item{df}{a data.frame. Element of lists.}
+\item{df}{A data.frame. An element from the `lists` list.}
 
-\item{keycol}{the number or name of the column in `df` which is considered to be a key.}
+\item{keycol}{The number or name of the column in `df` which is considered to be a key.}
 
-\item{auto.key.name}{name for the automatic key column if this needs to be created.}
+\item{nicenames}{If TRUE the column names are processed to be compatible with LabKey standards.
+See `lktNiceNames`.}
+
+\item{auto.key.name}{Name for an automatic key column if this needs to be created.}
 }
 \description{
 To be used within the `create.lists.lists.xml` function.
