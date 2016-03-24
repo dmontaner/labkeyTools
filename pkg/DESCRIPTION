@@ -15,4 +15,4 @@ Suggests:
     rmarkdown
 VignetteBuilder: knitr
 RoxygenNote: 5.0.1
-Imports: XML, stringr
+Imports: XML
