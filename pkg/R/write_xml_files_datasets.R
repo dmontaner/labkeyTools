@@ -1,4 +1,4 @@
-##write_xml_files_datasets.R
+#write_xml_files_datasets.R
 ##2016-03-14 david.montaner@gmail.com
 
 ##' Create .dataset file for LabKey datasets
@@ -194,6 +194,7 @@ create.datasets.columns.node <- function (df,
         n.column <- xmlNode (name = "column",
                              attrs = c (columnName = co),
                              xmlNode (name = "datatype",    datatype (clase)),
+                             ##xmlNode (name = "columnTitle", lktNiceTitles2 (co)),
                              xmlNode (name = "columnTitle", lktNiceTitles (co)),
                              xmlNode (name = "rangeURI",    rangeURI (clase)))
         ## fk node
