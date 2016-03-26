@@ -1,6 +1,6 @@
 Package: labkeyTools
 Title: Labkey miscellaneous tools
-Version: 0.0.0.9001
+Version: 0.0.0.9002
 Authors@R: person ("David", "Montaner", email = "david.montaner@gmail.com", role = c ("aut", "cre"))
 Description: Some tools to automatize working with Labkey.
 Depends:
