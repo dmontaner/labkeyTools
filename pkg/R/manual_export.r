@@ -1,6 +1,8 @@
 ##manual_export.r
 ##2016-03-24 david.montaner@gmail.com
 
+## MANUAL IMPORT REQUIRES nicenames...
+
 ## SOME NOTES FROM THE LABKEY WEB
 
 ## If dataset has more than one row per participant/visit,
@@ -55,8 +57,11 @@ lktSimpleExport <- function (x,
                              ) {
 
     ## date column name. May be could be a parameter of the function
-    dat.col = "date"
-        
+    dat.col = "Date"
+
+    if (!tolower (pid.col) %in% tolower (colnames (x))) stop (pid.col, " column is not found in your dataset")
+    if (!tolower (dat.col) %in% tolower (colnames (x))) stop (dat.col, " column is not found in your dataset")
+    
     ## test fieldInfo here may be
 
     ## build x.info
@@ -112,7 +117,7 @@ singleFileImporInit <- function (x,
     ## Description  - Optional. Description of the field
 
     ## date column name. May be could be a parameter of the function
-    dat.col = "date"
+    dat.col = "Date"
     
     ## columns describing the fields
     out.cols <- c ("Property", "Label", "RangeURI", "Format", "NotNull", "Hidden",
