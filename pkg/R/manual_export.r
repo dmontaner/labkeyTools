@@ -57,8 +57,8 @@ lktSimpleExport <- function (x,
                              ) {
 
     ## date column name. May be could be a parameter of the function
-    dat.col = "Date"
-
+    dat.col = colnames (x)[tolower (colnames (x)) == "date"] ## this takes any kind of capitalization of the Date column name
+    
     if (!tolower (pid.col) %in% tolower (colnames (x))) stop (pid.col, " column is not found in your dataset")
     if (!tolower (dat.col) %in% tolower (colnames (x))) stop (dat.col, " column is not found in your dataset")
     
