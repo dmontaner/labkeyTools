@@ -6,7 +6,7 @@
 \usage{
 saveStudy(datasets, folderLabel, folderTitle = folderLabel, meta.datasets,
   lookup = NULL, protect = TRUE, path = paste0(folderLabel, ".folder"),
-  zip = TRUE, keep = TRUE, timepointType = "DATE",
+  zip = TRUE, keep = !zip, timepointType = "DATE",
   subjectColumnName = "ParticipantId", subjectNounSingular = "Participant",
   subjectNounPlural = "Participants", securityType = "BASIC_WRITE",
   startdDate = format(Sys.Date(), "\%Y-\%m-\%dZ"), baseID = 5000,

@@ -36,9 +36,9 @@ validDataset <- function (x, verbose = TRUE, uidcol = "lsid") {
     
     if (verbose) {
         if (res) {
-            cat ("The data.frame looks FINE", fill = TRUE)
+            cat ("The data.frame looks FINE according to the", uidcol, "column", fill = TRUE)
         } else {
-            cat ("The data.frame looks CORRUPTED", fill = TRUE)
+            cat ("The data.frame looks CORRUPTED according to the", uidcol, "column", fill = TRUE)
         }
     }
 

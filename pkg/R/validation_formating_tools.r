@@ -121,7 +121,7 @@ validateDataFrame <- function (df, name = "", long.char = 3999
     for (i in 1:ncol (df)) {
         if (is.character (df[,i])) {
             ## maximum character length
-            mchar <- max (nchar (df[,i]))
+            mchar <- max (nchar (df[,i]), na.rm = TRUE)
             if (mchar > long.char) {
                 stop ("Column ", colnames (df)[i], " in your data.frame", name, "has more than ", long.char, " characters. ",
                       "Labkey defaults require shorter text values.")
